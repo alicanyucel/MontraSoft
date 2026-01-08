@@ -20,7 +20,9 @@ import { ToolbarModule } from 'primeng/toolbar';
           <li><a routerLink="/about" class="nav-link">Hakkımızda</a></li>
           <li><a routerLink="/contact" class="nav-link">İletişim</a></li>
         </ul>
-        <button pButton type="button" label="Teklif Al" class="p-button-rounded contact-btn"></button>
+        <a href="https://wa.me/905416923675?text=Merhaba%2C%20teklif%20almak%20istiyorum." target="_blank">
+          <button pButton type="button" label="Teklif Al" class="p-button-rounded contact-btn"></button>
+        </a>
       </nav>
     </div>
   `,

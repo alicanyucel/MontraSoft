@@ -13,7 +13,9 @@ import { CardModule } from 'primeng/card';
         <h1>Dijital Dönüşümün Güçlü Çözüm Ortağı</h1>
         <p>YÜCELSOFT ile işletmenizi modern teknolojiler kullanarak geleceğe taşıyın</p>
         <div class="hero-buttons">
-          <button pButton type="button" label="Teklif Al" class="p-button-lg p-button-primary"></button>
+          <a href="https://wa.me/905416923675?text=Merhaba%2C%20teklif%20almak%20istiyorum." target="_blank">
+            <button pButton type="button" label="Teklif Al" class="p-button-lg p-button-primary"></button>
+          </a>
           <button pButton type="button" label="Daha Fazla Bilgi" class="p-button-lg p-button-outlined"></button>
         </div>
       </div>
