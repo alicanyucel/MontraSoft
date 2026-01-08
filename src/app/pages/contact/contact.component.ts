@@ -1,0 +1,401 @@
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ButtonModule } from 'primeng/button';
+import { SelectModule } from 'primeng/select';
+
+@Component({
+  selector: 'app-contact',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    InputTextModule,
+    InputTextareaModule,
+    ButtonModule,
+    SelectModule
+  ],
+  template: `
+    <div class="contact-header">
+      <div class="header-content">
+        <h1>İletişim</h1>
+        <p>Bize yazın, teklif alın, sorularınızı sorun</p>
+      </div>
+    </div>
+
+    <div class="contact-container">
+      <div class="container">
+        <div class="contact-content">
+          <div class="contact-info">
+            <h2>Ulaşım Bilgileri</h2>
+            <div class="info-items">
+              <div class="info-item">
+                <div class="info-icon">📍</div>
+                <div class="info-text">
+                  <h4>Adres</h4>
+                  <p>Maslak, Maslak Mah., 4. Cadde No:77<br>Sarıyer, İstanbul, Türkiye</p>
+                </div>
+              </div>
+              <div class="info-item">
+                <div class="info-icon">📞</div>
+                <div class="info-text">
+                  <h4>Telefon</h4>
+                  <p>+90 (212) 555-1234<br>+90 (212) 555-5678</p>
+                </div>
+              </div>
+              <div class="info-item">
+                <div class="info-icon">📧</div>
+                <div class="info-text">
+                  <h4>E-posta</h4>
+                  <p>info@baan.com<br>support@baan.com</p>
+                </div>
+              </div>
+              <div class="info-item">
+                <div class="info-icon">🕒</div>
+                <div class="info-text">
+                  <h4>Çalışma Saatleri</h4>
+                  <p>Pazartesi - Cuma: 09:00 - 18:00<br>Cumartesi - Pazar: Kapalı</p>
+                </div>
+              </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Sosyal Medya</h3>
+            <div class="social-links">
+              <a href="#" class="social-link">LinkedIn</a>
+              <a href="#" class="social-link">Twitter</a>
+              <a href="#" class="social-link">GitHub</a>
+              <a href="#" class="social-link">Facebook</a>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <h2>Bize Yazın</h2>
+            <form (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label for="name">İsim</label>
+                <input
+                  pInputText
+                  id="name"
+                  [(ngModel)]="formData.name"
+                  name="name"
+                  placeholder="Adınız"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email">E-posta</label>
+                <input
+                  pInputText
+                  id="email"
+                  type="email"
+                  [(ngModel)]="formData.email"
+                  name="email"
+                  placeholder="E-posta adresiniz"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Telefon (İsteğe bağlı)</label>
+                <input
+                  pInputText
+                  id="phone"
+                  [(ngModel)]="formData.phone"
+                  name="phone"
+                  placeholder="+90 (XXX) XXX-XXXX"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="company">Şirket Adı</label>
+                <input
+                  pInputText
+                  id="company"
+                  [(ngModel)]="formData.company"
+                  name="company"
+                  placeholder="Şirketinizin adı"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Konu</label>
+                <p-select
+                  [(ngModel)]="formData.subject"
+                  name="subject"
+                  [options]="subjectOptions"
+                  optionLabel="label"
+                  optionValue="value"
+                  placeholder="Bir konu seçin"
+                >
+                </p-select>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Mesaj</label>
+                <textarea
+                  pInputTextarea
+                  id="message"
+                  [(ngModel)]="formData.message"
+                  name="message"
+                  placeholder="Mesajınızı yazın..."
+                  rows="6"
+                  required
+                ></textarea>
+              </div>
+
+              <button
+                pButton
+                type="submit"
+                label="Gönder"
+                class="p-button-lg"
+                icon="pi pi-send"
+              ></button>
+            </form>
+
+            <div *ngIf="submitted" class="success-message">
+              ✓ Mesajınız başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="map-section">
+      <div class="container">
+        <h2>Konumumuz</h2>
+        <div class="map-placeholder">
+          <p>🗺️ Google Maps burada gösterilecek</p>
+        </div>
+      </div>
+    </div>
+  `,
+  styles: [`
+    .contact-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .header-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .header-content p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .contact-container {
+      padding: 4rem 2rem;
+      background-color: #f8f9fa;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .contact-info h2,
+    .contact-form h2 {
+      color: #667eea;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .info-items {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .info-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .info-icon {
+      font-size: 2rem;
+      min-width: 40px;
+    }
+
+    .info-text h4 {
+      margin: 0 0 0.5rem 0;
+      color: #667eea;
+    }
+
+    .info-text p {
+      margin: 0;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: opacity 0.3s;
+    }
+
+    .social-link:hover {
+      opacity: 0.8;
+    }
+
+    .contact-form {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    :deep(.p-select) {
+      width: 100%;
+    }
+
+    .success-message {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 5px;
+      text-align: center;
+      animation: slideIn 0.3s ease-in-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .map-section {
+      padding: 4rem 2rem;
+      background: white;
+    }
+
+    .map-section h2 {
+      text-align: center;
+      color: #667eea;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .map-placeholder {
+      width: 100%;
+      height: 400px;
+      background: #ddd;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #999;
+    }
+
+    @media (max-width: 768px) {
+      .contact-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  `]
+})
+export class ContactComponent {
+  formData = {
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    subject: '',
+    message: ''
+  };
+
+  subjectOptions = [
+    { label: 'Teklif Talebı', value: 'teklif' },
+    { label: 'Teknik Destek', value: 'destek' },
+    { label: 'İşbirliği', value: 'isbirligi' },
+    { label: 'Diğer', value: 'diger' }
+  ];
+
+  submitted = false;
+
+  onSubmit() {
+    console.log('Form Data:', this.formData);
+    this.submitted = true;
+
+    // Reset form
+    setTimeout(() => {
+      this.formData = {
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        subject: '',
+        message: ''
+      };
+      this.submitted = false;
+    }, 3000);
+  }
+}
