@@ -70,7 +70,7 @@ import { ButtonModule } from 'primeng/button';
             <h2>Bize Yazın</h2>
             <form (ngSubmit)="onSubmit()">
               <div class="form-group">
-                <label for="name">İsim</label>
+                <label for="name">İsim <span class="required">*</span></label>
                 <input
                   pInputText
                   id="name"
@@ -79,10 +79,11 @@ import { ButtonModule } from 'primeng/button';
                   placeholder="Adınız"
                   required
                 />
+                <span *ngIf="submitted && !formData.name" class="error-message">İsim gereklidir</span>
               </div>
 
               <div class="form-group">
-                <label for="email">E-posta</label>
+                <label for="email">E-posta <span class="required">*</span></label>
                 <input
                   pInputText
                   id="email"
@@ -92,6 +93,8 @@ import { ButtonModule } from 'primeng/button';
                   placeholder="E-posta adresiniz"
                   required
                 />
+                <span *ngIf="submitted && !formData.email" class="error-message">E-posta gereklidir</span>
+                <span *ngIf="submitted && formData.email && !isValidEmail(formData.email)" class="error-message">Geçerli bir e-posta adresi girin</span>
               </div>
 
               <div class="form-group">
@@ -106,23 +109,26 @@ import { ButtonModule } from 'primeng/button';
               </div>
 
               <div class="form-group">
-                <label for="company">Şirket Adı</label>
+                <label for="company">Şirket Adı <span class="required">*</span></label>
                 <input
                   pInputText
                   id="company"
                   [(ngModel)]="formData.company"
                   name="company"
                   placeholder="Şirketinizin adı"
+                  required
                 />
+                <span *ngIf="submitted && !formData.company" class="error-message">Şirket adı gereklidir</span>
               </div>
 
               <div class="form-group">
-                <label for="subject">Konu</label>
+                <label for="subject">Konu <span class="required">*</span></label>
                 <select
                   id="subject"
                   [(ngModel)]="formData.subject"
                   name="subject"
                   class="form-select"
+                  required
                 >
                   <option value="">Bir konu seçin</option>
                   <option value="teklif">Teklif Talebı</option>
@@ -130,10 +136,11 @@ import { ButtonModule } from 'primeng/button';
                   <option value="isbirligi">İşbirliği</option>
                   <option value="diger">Diğer</option>
                 </select>
+                <span *ngIf="submitted && !formData.subject" class="error-message">Konu seçilmelidir</span>
               </div>
 
               <div class="form-group">
-                <label for="message">Mesaj</label>
+                <label for="message">Mesaj <span class="required">*</span></label>
                 <textarea
                   id="message"
                   [(ngModel)]="formData.message"
@@ -142,6 +149,8 @@ import { ButtonModule } from 'primeng/button';
                   rows="6"
                   required
                 ></textarea>
+                <span *ngIf="submitted && !formData.message" class="error-message">Mesaj gereklidir</span>
+                <span *ngIf="formData.message" class="char-count">{{ formData.message.length }}/500 karakter</span>
               </div>
 
               <button
@@ -150,11 +159,15 @@ import { ButtonModule } from 'primeng/button';
                 label="Gönder"
                 class="p-button-lg"
                 icon="pi pi-send"
+                [disabled]="!isFormValid() && submitted"
               ></button>
             </form>
 
-            <div *ngIf="submitted" class="success-message">
+            <div *ngIf="submitted && isFormValid()" class="success-message">
               ✓ Mesajınız başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz.
+            </div>
+            <div *ngIf="submitted && !isFormValid()" class="error-alert">
+              ⚠️ Lütfen tüm zorunlu alanları doldurunuz.
             </div>
           </div>
         </div>
@@ -287,7 +300,8 @@ import { ButtonModule } from 'primeng/button';
     }
 
     .form-group input,
-    .form-group textarea {
+    .form-group textarea,
+    .form-select {
       width: 100%;
       padding: 0.75rem;
       border: 1px solid #ddd;
@@ -297,7 +311,8 @@ import { ButtonModule } from 'primeng/button';
     }
 
     .form-group input:focus,
-    .form-group textarea:focus {
+    .form-group textarea:focus,
+    .form-select:focus {
       outline: none;
       border-color: #667eea;
       box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
@@ -318,15 +333,33 @@ import { ButtonModule } from 'primeng/button';
       animation: slideIn 0.3s ease-in-out;
     }
 
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .error-alert {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+      border-radius: 5px;
+      text-align: center;
+      animation: slideIn 0.3s ease-in-out;
+    }
+
+    .error-message {
+      display: block;
+      color: #dc3545;
+      font-size: 0.85rem;
+      margin-top: 0.3rem;
+    }
+
+    .required {
+      color: #dc3545;
+    }
+
+    .char-count {
+      display: block;
+      font-size: 0.8rem;
+      color: #999;
+      margin-top: 0.3rem;
     }
 
     .map-section {
@@ -361,11 +394,32 @@ import { ButtonModule } from 'primeng/button';
   `]
 })
 export class ContactComponent {
-  formData = {
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
+  isValidEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  isFormValid(): boolean {
+    return (
+      this.formData.name.trim() !== '' &&
+      this.formData.email.trim() !== '' &&
+      this.isValidEmail(this.formData.email) &&
+      this.formData.company.trim() !== '' &&
+      this.formData.subject !== '' &&
+      this.formData.message.trim() !== ''
+    );
+  }
+
+  onSubmit() {
+    this.submitted = true;
+
+    if (!this.isFormValid()) {
+      return;
+    }
+
+    console.log('Form Data:', this.formData);
+
+    // Reset form after 3 seconds
     subject: '',
     message: ''
   };
