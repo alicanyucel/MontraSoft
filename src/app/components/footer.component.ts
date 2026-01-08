@@ -3,9 +3,83 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
+  selector: 'back-to-top',
+  standalone: true,
+  template: `
+    <button
+      class="back-to-top"
+      (click)="scrollToTop()"
+      [style.display]="isVisible ? 'block' : 'none'"
+      aria-label="Sayfanın üstüne git"
+    >
+      ↑
+    </button>
+  `,
+  styles: [`
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background-color: #667eea;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .back-to-top:hover {
+      background-color: #5568d3;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(102, 126, 234, 0.6);
+    }
+
+    .back-to-top:active {
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+      .back-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 15px;
+        right: 15px;
+        font-size: 20px;
+      }
+    }
+  `]
+})
+class BackToTopComponent {
+  isVisible = false;
+
+  constructor() {
+    window.addEventListener('scroll', this.onWindowScroll.bind(this));
+  }
+
+  onWindowScroll() {
+    this.isVisible = window.scrollY > 300;
+  }
+
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+}
+
+@Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, BackToTopComponent],
   template: `
     <footer class="footer">
       <div class="footer-content">
@@ -41,6 +115,7 @@ import { RouterLink } from '@angular/router';
         <p>&copy; 2024 YÜCELSOFT Yazılım Şirketi. Tüm hakları saklıdır. | Tasarımcı: Ali Can Yücel</p>
       </div>
     </footer>
+    <back-to-top></back-to-top>
   `,
   styles: [`
     .footer {
