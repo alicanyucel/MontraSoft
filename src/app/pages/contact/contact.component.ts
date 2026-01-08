@@ -177,8 +177,16 @@ import { ButtonModule } from 'primeng/button';
     <div class="map-section">
       <div class="container">
         <h2>Konumumuz</h2>
-        <div class="map-placeholder">
-          <p>🗺️ Google Maps burada gösterilecek</p>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.5646!2d29.00579!3d41.06544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1sMaslak%20Mah.%20-%20Sarıyer%20Istanbul!5e0!3m2!1str!2str!4v1234567890"
+            width="100%"
+            height="400"
+            style="border:0; border-radius: 10px;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
         </div>
       </div>
     </div>
@@ -384,6 +392,13 @@ import { ButtonModule } from 'primeng/button';
       justify-content: center;
       font-size: 2rem;
       color: #999;
+    }
+
+    .map-container {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
     @media (max-width: 768px) {
