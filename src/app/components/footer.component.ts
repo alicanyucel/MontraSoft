@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-section">
-          <h3>BAAN Yazılım</h3>
+          <h3>YÜCELSOFT</h3>
           <p>Kurumsal yazılım çözümleriyle işletmenizi dijitale taşıyoruz.</p>
         </div>
         <div class="footer-section">
@@ -23,8 +23,8 @@ import { CommonModule } from '@angular/common';
         </div>
         <div class="footer-section">
           <h4>İletişim</h4>
-          <p>📧 info@baan.com</p>
-          <p>📞 +90 (212) 555-1234</p>
+          <p>📧 info@yucelsoft.com</p>
+          <p>📞 0541 692 36 75</p>
           <p>📍 İstanbul, Türkiye</p>
         </div>
         <div class="footer-section">
@@ -37,7 +37,7 @@ import { CommonModule } from '@angular/common';
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2024 BAAN Yazılım Şirketi. Tüm hakları saklıdır. | Tasarımcı: Ali Can Yücel</p>
+        <p>&copy; 2024 YÜCELSOFT Yazılım Şirketi. Tüm hakları saklıdır. | Tasarımcı: Ali Can Yücel</p>
       </div>
     </footer>
   `,

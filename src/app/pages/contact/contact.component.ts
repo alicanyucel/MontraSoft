@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
-import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ButtonModule } from 'primeng/button';
-import { SelectModule } from 'primeng/select';
 
 @Component({
   selector: 'app-contact',
@@ -13,9 +11,7 @@ import { SelectModule } from 'primeng/select';
     CommonModule,
     FormsModule,
     InputTextModule,
-    InputTextareaModule,
-    ButtonModule,
-    SelectModule
+    ButtonModule
   ],
   template: `
     <div class="contact-header">
@@ -42,14 +38,14 @@ import { SelectModule } from 'primeng/select';
                 <div class="info-icon">📞</div>
                 <div class="info-text">
                   <h4>Telefon</h4>
-                  <p>+90 (212) 555-1234<br>+90 (212) 555-5678</p>
+                  <p>+90 541 692 3675</p>
                 </div>
               </div>
               <div class="info-item">
                 <div class="info-icon">📧</div>
                 <div class="info-text">
                   <h4>E-posta</h4>
-                  <p>info@baan.com<br>support@baan.com</p>
+                  <p>info@yucelsoft.com<br>support@yucelsoft.com</p>
                 </div>
               </div>
               <div class="info-item">
@@ -122,21 +118,23 @@ import { SelectModule } from 'primeng/select';
 
               <div class="form-group">
                 <label for="subject">Konu</label>
-                <p-select
+                <select
+                  id="subject"
                   [(ngModel)]="formData.subject"
                   name="subject"
-                  [options]="subjectOptions"
-                  optionLabel="label"
-                  optionValue="value"
-                  placeholder="Bir konu seçin"
+                  class="form-select"
                 >
-                </p-select>
+                  <option value="">Bir konu seçin</option>
+                  <option value="teklif">Teklif Talebı</option>
+                  <option value="destek">Teknik Destek</option>
+                  <option value="isbirligi">İşbirliği</option>
+                  <option value="diger">Diğer</option>
+                </select>
               </div>
 
               <div class="form-group">
                 <label for="message">Mesaj</label>
                 <textarea
-                  pInputTextarea
                   id="message"
                   [(ngModel)]="formData.message"
                   name="message"

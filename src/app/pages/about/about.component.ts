@@ -11,7 +11,7 @@ import { ButtonModule } from 'primeng/button';
     <div class="about-header">
       <div class="header-content">
         <h1>Hakkımızda</h1>
-        <p>BAAN Yazılım - Türkiye'nin Güvenilir Teknoloji Ortağı</p>
+        <p>YÜCELSOFT - Türkiye'nin Güvenilir Teknoloji Ortağı</p>
       </div>
     </div>
 
@@ -21,7 +21,7 @@ import { ButtonModule } from 'primeng/button';
           <div class="about-text">
             <h2>Kimiz?</h2>
             <p>
-              BAAN Yazılım, 2010 yılından beri kurumsal yazılım çözümleri sunmakta olan ve
+              YÜCELSOFT, 2010 yılından beri kurumsal yazılım çözümleri sunmakta olan ve
               Türkiye'nin önde gelen teknoloji şirketlerinden biridir.
               Kuruluşundan günümüze kadar 150'den fazla projeyi başarıyla tamamlayarak,
               50'den fazla kurumsal müşteriye hizmet vermiştir.
@@ -93,7 +93,7 @@ import { ButtonModule } from 'primeng/button';
 
         <div class="team-section">
           <h2>Ekibimiz</h2>
-          <p>BAAN'da 50+ uzman yazılımcı, tasarımcı ve proje yöneticisinden oluşan
+          <p>YÜCELSOFT'ta 50+ uzman yazılımcı, tasarımcı ve proje yöneticisinden oluşan
              bir ekip çalışmaktadır. Tamamı IT alanında minimum 5 yıl deneyime sahip
              profesyonelleri ile gururluyız.</p>
           <div class="team-stats">

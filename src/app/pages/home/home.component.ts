@@ -11,7 +11,7 @@ import { CardModule } from 'primeng/card';
     <div class="hero-section">
       <div class="hero-content">
         <h1>Dijital Dönüşümün Güçlü Çözüm Ortağı</h1>
-        <p>BAAN ile işletmenizi modern teknolojiler kullanarak geleceğe taşıyın</p>
+        <p>YÜCELSOFT ile işletmenizi modern teknolojiler kullanarak geleceğe taşıyın</p>
         <div class="hero-buttons">
           <button pButton type="button" label="Teklif Al" class="p-button-lg p-button-primary"></button>
           <button pButton type="button" label="Daha Fazla Bilgi" class="p-button-lg p-button-outlined"></button>
@@ -21,7 +21,7 @@ import { CardModule } from 'primeng/card';
 
     <div class="features-section">
       <div class="container">
-        <h2>Neden BAAN'ı Seçmelisiniz?</h2>
+        <h2>Neden YÜCELSOFT'u Seçmelisiniz?</h2>
         <div class="features-grid">
           <div class="feature-card">
             <div class="feature-icon">⚡</div>

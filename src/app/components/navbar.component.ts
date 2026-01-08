@@ -12,7 +12,7 @@ import { ToolbarModule } from 'primeng/toolbar';
     <div class="navbar-container">
       <nav class="navbar">
         <div class="navbar-brand">
-          <h1><span class="brand-icon">💻</span> BAAN</h1>
+          <h1><span class="brand-icon">💻</span> YÜCELSOFT</h1>
         </div>
         <ul class="nav-links">
           <li><a routerLink="/" class="nav-link">Anasayfa</a></li>

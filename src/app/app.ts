@@ -2,13 +2,14 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar.component';
 import { FooterComponent } from './components/footer.component';
+import { WhatsappChatComponent } from './components/whatsapp-chat.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent, FooterComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, WhatsappChatComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('BAAN');
+  protected readonly title = signal('YÜCELSOFT');
 }
