@@ -94,22 +94,22 @@ import { CardModule } from 'primeng/card';
     .hero-section {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
-      padding: 6rem 2rem;
+      padding: 4rem 2rem;
       text-align: center;
-      min-height: 500px;
+      min-height: 600px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
     .hero-content h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       margin-bottom: 1rem;
       font-weight: bold;
     }
 
     .hero-content p {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       margin-bottom: 2rem;
       opacity: 0.9;
     }
@@ -132,7 +132,7 @@ import { CardModule } from 'primeng/card';
     }
 
     .features-section h2 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       text-align: center;
       margin-bottom: 3rem;
       color: #333;

@@ -39,13 +39,13 @@ import { ToolbarModule } from 'primeng/toolbar';
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 1rem 2rem;
+      padding: 0.6rem 2rem;
     }
 
     .navbar-brand h1 {
       color: white;
       margin: 0;
-      font-size: 1.8rem;
+      font-size: 1.4rem;
       font-weight: bold;
     }
 

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   template: `
     <footer class="footer">
       <div class="footer-content">
@@ -15,10 +16,10 @@ import { CommonModule } from '@angular/common';
         <div class="footer-section">
           <h4>Hızlı Linkler</h4>
           <ul>
-            <li><a href="#">Anasayfa</a></li>
-            <li><a href="#">Hizmetler</a></li>
-            <li><a href="#">Hakkımızda</a></li>
-            <li><a href="#">İletişim</a></li>
+            <li><a routerLink="/" class="footer-link">Anasayfa</a></li>
+            <li><a routerLink="/services" class="footer-link">Hizmetler</a></li>
+            <li><a routerLink="/about" class="footer-link">Hakkımızda</a></li>
+            <li><a routerLink="/contact" class="footer-link">İletişim</a></li>
           </ul>
         </div>
         <div class="footer-section">
@@ -45,37 +46,50 @@ import { CommonModule } from '@angular/common';
     .footer {
       background-color: #1a1a2e;
       color: #ecf0f1;
-      padding: 3rem 2rem 1rem;
-      margin-top: 4rem;
+      padding: 1.5rem 2rem 0.75rem;
+      margin-top: 3rem;
     }
 
     .footer-content {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
       max-width: 1200px;
-      margin: 0 auto 2rem;
+      margin: 0 auto 1rem;
     }
 
     .footer-section h3,
     .footer-section h4 {
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
       color: #667eea;
+      font-size: 0.95rem;
+    }
+
+    .footer-section h3 {
+      font-size: 1.1rem;
+    }
+
+    .footer-section p {
+      font-size: 0.9rem;
+      margin: 0.3rem 0;
     }
 
     .footer-section ul {
       list-style: none;
       padding: 0;
+      margin: 0;
     }
 
     .footer-section ul li {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.3rem;
     }
 
     .footer-section a {
       color: #ecf0f1;
       text-decoration: none;
       transition: color 0.3s;
+      font-size: 0.9rem;
+      cursor: pointer;
     }
 
     .footer-section a:hover {
@@ -84,9 +98,9 @@ import { CommonModule } from '@angular/common';
 
     .footer-bottom {
       text-align: center;
-      padding-top: 2rem;
+      padding-top: 0.75rem;
       border-top: 1px solid #444;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       color: #999;
     }
   `]
