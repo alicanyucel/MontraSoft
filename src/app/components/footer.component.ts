@@ -57,7 +57,7 @@ import { RouterLink } from '@angular/router';
     }
   `]
 })
-class BackToTopComponent {
+export class BackToTopComponent {
   isVisible = false;
 
   constructor() {
