@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: montrasoft-app
+    ports:
+      - "4200:4200"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - montrasoft-network
+
+networks:
+  montrasoft-network:
+    driver: bridge
