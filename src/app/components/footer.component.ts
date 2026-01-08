@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID, Inject } from '@angular/core';
 
 @Component({
   selector: 'back-to-top',
@@ -57,11 +59,23 @@ import { RouterLink } from '@angular/router';
     }
   `]
 })
-export class BackToTopComponent {
+export class BackToTopComponent implements OnInit, OnDestroy {
   isVisible = false;
+  private scrollListener: (() => void) | null = null;
 
-  constructor() {
-    window.addEventListener('scroll', this.onWindowScroll.bind(this));
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.scrollListener = this.onWindowScroll.bind(this);
+      window.addEventListener('scroll', this.scrollListener);
+    }
+  }
+
+  ngOnDestroy() {
+    if (isPlatformBrowser(this.platformId) && this.scrollListener) {
+      window.removeEventListener('scroll', this.scrollListener);
+    }
   }
 
   onWindowScroll() {
@@ -69,10 +83,12 @@ export class BackToTopComponent {
   }
 
   scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
   }
 }
 
